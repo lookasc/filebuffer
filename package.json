@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint \"./**/*.js\"",
     "lint-fix": "eslint --fix \"./**/*.js\"",
-    "test": "NODE_ENV=test nyc --reporter=html --reporter=text mocha **/*.test.js --bail --timeout 10000 --exit",
+    "test": "NODE_ENV=test nyc --reporter=html --reporter=text mocha **/*.test.js --bail --timeout 10000 --exit && sleep 0.5 && rm -r ./data/*",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
@@ -32,6 +32,7 @@
     "chai": "^4.2.0",
     "coveralls": "^3.0.9",
     "eslint": "^6.7.2",
-    "mocha": "^6.2.2"
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1"
   }
 }
