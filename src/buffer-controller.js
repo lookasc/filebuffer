@@ -1,10 +1,12 @@
 const Buffer = require('./buffer');
+const { EventEmitter } = require('events');
 const indexGenerator = require('ulid').monotonicFactory();
 const { FILES } = require('../config');
 
-class BufferController {
+class BufferController extends EventEmitter {
 
 	constructor(config) {
+		super();
 		console.log('Creating new file buffer controller');
 		this.activeBuffer = new Buffer(indexGenerator);
 		this.exchangingBufferNow = false;
@@ -32,7 +34,8 @@ class BufferController {
 				let oldBuffer = this.activeBuffer;
 				this.activeBuffer = newBuffer;
 				oldBuffer.close(storedBufferName => {
-					this.publishController.dispatch(storedBufferName);
+					this.emit('newFile', { fileName: storedBufferName });
+					// this.publishController.dispatch(storedBufferName);
 				});
 				this.exchangingBufferNow = false;
 			});
