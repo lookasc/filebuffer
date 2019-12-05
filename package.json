@@ -19,7 +19,8 @@
     "filebuffer",
     "file",
     "data",
-    "storage"
+		"storage",
+		"rotate"
   ],
   "author": "lookasc",
   "license": "MIT",
