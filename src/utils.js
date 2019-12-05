@@ -1,3 +1,5 @@
+const { existsSync, mkdirSync } = require('fs');
+
 function convertSizeStringToByteNumber(inputString) {
 	let ALLOWED_CHARS = ['k', 'm'];
 	if (!inputString) throw new Error('sizeString not supplied');
@@ -18,6 +20,14 @@ function convertSizeStringToByteNumber(inputString) {
 	return size;
 }
 
+function prepareStoreDirectory(dir) {
+	if (!existsSync(dir)) {
+		mkdirSync(dir);
+		return dir;
+	} else return null;
+}
+
 module.exports = {
-	convertSizeStringToByteNumber
+	convertSizeStringToByteNumber,
+	prepareStoreDirectory
 };

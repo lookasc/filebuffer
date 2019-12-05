@@ -2,12 +2,14 @@ const Buffer = require('./buffer');
 const { EventEmitter } = require('events');
 const indexGenerator = require('ulid').monotonicFactory();
 const { getConfiguration, testConfig } = require('./config');
+const { prepareStoreDirectory } = require('./utils');
 
 class BufferController extends EventEmitter {
 
 	constructor(params) {
 		super();
 		this.config = (process.env.NODE_ENV === 'test') ? testConfig : getConfiguration(params);
+		prepareStoreDirectory(this.config.dataDir);
 		this.activeBuffer = new Buffer(indexGenerator, this.config);
 		this.exchangingBufferNow = false;
 

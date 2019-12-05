@@ -4,7 +4,7 @@ Buffering data to file with rotating
 [![NPM][npm-icon]][npm-url]
 
 [![Build Status](https://travis-ci.org/lookasc/filebuffer.svg?branch=master)](https://travis-ci.org/lookasc/filebuffer)
-[![Coverage Status](https://coveralls.io/repos/github/lookasc/jsend-api/badge.svg?branch=master)](https://coveralls.io/github/lookasc/jsend-api?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/lookasc/filebuffer/badge.svg?branch=master)](https://coveralls.io/github/lookasc/filebuffer?branch=master)
 
 [npm-icon]: https://nodei.co/npm/filebuffer.svg?downloads=true
 [npm-url]: https://www.npmjs.com/package/filebuffer

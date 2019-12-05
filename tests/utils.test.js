@@ -1,6 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
-const { convertSizeStringToByteNumber } = require('../src/utils');
+const { existsSync, rmdirSync } = require('fs');
+const { convertSizeStringToByteNumber, prepareStoreDirectory } = require('../src/utils');
 
 describe('Utils', () => {
 	
@@ -48,6 +49,27 @@ describe('Utils', () => {
 			expect(convertSizeStringToByteNumber('			1  m ')).to.equal(1048576);
 		});
 		
+	});
+
+	describe('prepareStoreDirectory', () => {
+		let dir = './testdir';
+
+		it('should create file which does not exist', () => {
+			let result = prepareStoreDirectory(dir);
+			expect(existsSync(dir)).to.be.true;
+			expect(result).to.equal(dir);
+		});
+
+		it('should not create file which exists', () => {
+			let result = prepareStoreDirectory(dir);
+			expect(existsSync(dir)).to.be.true;
+			expect(result).to.be.null;
+		});
+
+		after(() => {
+			rmdirSync(dir);
+		});
+
 	});
 	
 });
