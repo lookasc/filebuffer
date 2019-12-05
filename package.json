@@ -1,7 +1,7 @@
 {
   "name": "filebuffer",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.0",
+  "description": "Buffering data to file with rotating",
   "main": "index.js",
   "scripts": {
     "lint": "eslint \"./**/*.js\"",
@@ -17,7 +17,9 @@
     "buffer",
     "rollover",
     "filebuffer",
-    "file"
+		"file",
+		"data",
+		"storage"
   ],
   "author": "lookasc",
   "license": "MIT",
