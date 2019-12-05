@@ -3,13 +3,14 @@ const expect = chai.expect;
 const fs = require('fs');
 const Buffer = require('../src/buffer');
 const indexGenerator = require('ulid').monotonicFactory();
+const { testConfig } = require('../src/config');
 
 describe('Buffer class', () => {
 	let buffer;
 	let dummyData = 'dummyData';
 
 	beforeEach(() => {
-		buffer = new Buffer(indexGenerator);
+		buffer = new Buffer(indexGenerator, testConfig);
 	});
 
 	it('should create instance od Buffer', () => {

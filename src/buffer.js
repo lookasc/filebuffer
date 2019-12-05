@@ -1,17 +1,18 @@
-const { FILES } = require('../config');
 const { createWriteStream, rename } = require('fs');
 const { convertSizeStringToByteNumber } = require('./utils');
+const { join } = require('path');
 
 class Buffer {
 
-	constructor(generateULID) {
+	constructor(generateULID, config) {
+		this.config = config;
 		let timestamp = Date.now();
 		let ulid = generateULID(timestamp);
-		let extension = FILES.ACTIVE_BUFFER_FILE_EXTENSION;
+		let extension = this.config.activeBufferFileExtension;
 
 		this.size = 0;
-		this.maxSize = convertSizeStringToByteNumber(FILES.ACTIVE_BUFFER_MAX_SIZE);
-		this.name = `${FILES.DIR}${timestamp}.${ulid}.${extension}`;
+		this.maxSize = convertSizeStringToByteNumber(this.config.activeBufferMaxSize);
+		this.name = join(this.config.dataDir, ulid + '.' + extension);
 		this.stream = createWriteStream(this.name);
 	}
 
@@ -29,9 +30,9 @@ class Buffer {
 
 	deactivate() {
 		return new Promise(resolve => {
-			let strToReplace = new RegExp(FILES.ACTIVE_BUFFER_FILE_EXTENSION, 'g');
+			let strToReplace = new RegExp(this.config.activeBufferFileExtension, 'g');
 			let oldName = `${this.name}`;
-			let newName = oldName.replace(strToReplace, FILES.INACTIVE_BUFFER_FILE_EXTENSION);
+			let newName = oldName.replace(strToReplace, this.config.inactiveBufferFileExtension);
 			rename(oldName, newName, (err) => {
 				if (err) throw new Error(err);
 				resolve(newName);

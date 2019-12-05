@@ -1,18 +1,21 @@
 const Buffer = require('./buffer');
 const { EventEmitter } = require('events');
 const indexGenerator = require('ulid').monotonicFactory();
-const { FILES } = require('../config');
+const { getConfiguration, testConfig } = require('./config');
 
 class BufferController extends EventEmitter {
 
-	constructor(config) {
+	constructor(params) {
 		super();
-		this.activeBuffer = new Buffer(indexGenerator);
+		this.config = (process.env.NODE_ENV === 'test') ? testConfig : getConfiguration(params);
+		this.activeBuffer = new Buffer(indexGenerator, this.config);
 		this.exchangingBufferNow = false;
 
-		setInterval(() => {
-			if (this.activeBuffer.size) this.rolloverBuffer();
-		}, FILES.ACTIVE_BUFFER_MAX_AGE * 1000);
+		if (this.config.allowTimeRollover) {
+			setInterval(() => {
+				if (this.activeBuffer.size) this.rolloverBuffer();
+			}, this.config.activeBufferMaxAge * 1000);
+		}
 	}
 
 	write(data) {
@@ -25,7 +28,7 @@ class BufferController extends EventEmitter {
 
 	rolloverBuffer() {
 		this.exchangingBufferNow = true;
-		let newBuffer = new Buffer(indexGenerator);
+		let newBuffer = new Buffer(indexGenerator, this.config);
 		newBuffer
 			.waitUntilReady()
 			.then(() => {

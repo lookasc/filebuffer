@@ -1,4 +1,4 @@
-var convertSizeStringToByteNumber = function (inputString) {
+function convertSizeStringToByteNumber(inputString) {
 	let ALLOWED_CHARS = ['k', 'm'];
 	if (!inputString) throw new Error('sizeString not supplied');
 
@@ -16,7 +16,7 @@ var convertSizeStringToByteNumber = function (inputString) {
 
 	let size = sizeNumber * multiplier;
 	return size;
-};
+}
 
 module.exports = {
 	convertSizeStringToByteNumber

@@ -1,3 +1,3 @@
 module.exports = {
-	FileBuffer: require('./src/buffer-controller');
-}
+	FileBuffer: require('./src/buffer-controller')
+};
