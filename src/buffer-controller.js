@@ -7,10 +7,8 @@ class BufferController extends EventEmitter {
 
 	constructor(config) {
 		super();
-		console.log('Creating new file buffer controller');
 		this.activeBuffer = new Buffer(indexGenerator);
 		this.exchangingBufferNow = false;
-		this.publishController = config.publishController;
 
 		setInterval(() => {
 			if (this.activeBuffer.size) this.rolloverBuffer();
@@ -34,8 +32,7 @@ class BufferController extends EventEmitter {
 				let oldBuffer = this.activeBuffer;
 				this.activeBuffer = newBuffer;
 				oldBuffer.close(storedBufferName => {
-					this.emit('newFile', { fileName: storedBufferName });
-					// this.publishController.dispatch(storedBufferName);
+					this.emit('bufferExchange', { fileName: storedBufferName });
 				});
 				this.exchangingBufferNow = false;
 			});

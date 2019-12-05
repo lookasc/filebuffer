@@ -1,6 +1,6 @@
 const { FILES } = require('../config');
 const { createWriteStream, rename } = require('fs');
-const { convertSizeStringToByteNumber } = require('../utils');
+const { convertSizeStringToByteNumber } = require('./utils');
 
 class Buffer {
 
