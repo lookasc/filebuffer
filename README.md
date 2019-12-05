@@ -2,6 +2,7 @@
 Buffering data to file with rotating
 
 [![NPM][npm-icon]][npm-url]
+
 [![Build Status](https://travis-ci.org/lookasc/filebuffer.svg?branch=master)](https://travis-ci.org/lookasc/filebuffer)
 [![Coverage Status](https://coveralls.io/repos/github/lookasc/jsend-api/badge.svg?branch=master)](https://coveralls.io/github/lookasc/jsend-api?branch=master)
 
@@ -16,7 +17,7 @@ npm install filebuffer --save
 
 # About
 
-This package provides FileBuffer class which let to save data to file. File buffer may be rotating based on file size or age. 
+This package provides FileBuffer class which lets to save data to file. File buffer may rotate based on file size or age. 
 
 # Usage
 
