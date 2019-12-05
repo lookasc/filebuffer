@@ -1,6 +1,6 @@
 {
   "name": "filebuffer",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "Buffering data to file with rotating",
   "main": "index.js",
   "scripts": {
