@@ -1,6 +1,6 @@
 {
   "name": "filebuffer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Buffering data to file with rotating",
   "main": "index.js",
   "scripts": {
@@ -19,8 +19,8 @@
     "filebuffer",
     "file",
     "data",
-		"storage",
-		"rotate"
+    "storage",
+    "rotate"
   ],
   "author": "lookasc",
   "license": "MIT",
