@@ -17,7 +17,7 @@ npm install filebuffer --save
 
 # About
 
-This package provides FileBuffer class which lets to save data to file. File buffer may rotate based on file size or age. 
+This package provides FileBuffer class which lets to save data to file. File buffer may rotate based on file size or age. Originally created for ingesting large ammount of data and save into files.
 
 # Usage
 ### Writing to buffer
@@ -27,7 +27,7 @@ const { FileBuffer } = require('filebuffer');
 
 const fb = new FileBuffer();
 
-fb.write('Data to write');
+fb.write('Data to write'); // write() method will append \n characted at the end
 ```
 
 ### Providing configuration

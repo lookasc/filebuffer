@@ -20,7 +20,8 @@
     "file",
     "data",
     "storage",
-    "rotate"
+		"rotate",
+		"ingest"
   ],
   "author": "lookasc",
   "license": "MIT",
