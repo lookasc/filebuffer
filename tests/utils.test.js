@@ -53,14 +53,21 @@ describe('Utils', () => {
 
 	describe('prepareStoreDirectory', () => {
 		let dir = './testdir';
+		let dir2 = './testdir2';
 
-		it('should create file which does not exist', () => {
+		it('should create dir which does not exist', () => {
 			let result = prepareStoreDirectory(dir);
 			expect(existsSync(dir)).to.be.true;
 			expect(result).to.equal(dir);
 		});
 
-		it('should not create file which exists', () => {
+		it('should create dir which does not exist recursively', () => {
+			let result = prepareStoreDirectory(dir2 + '/recursive');
+			expect(existsSync(dir2)).to.be.true;
+			expect(result).to.equal(dir2 + '/recursive');
+		});
+
+		it('should not create dir which exists', () => {
 			let result = prepareStoreDirectory(dir);
 			expect(existsSync(dir)).to.be.true;
 			expect(result).to.be.null;
@@ -68,6 +75,8 @@ describe('Utils', () => {
 
 		after(() => {
 			rmdirSync(dir);
+			rmdirSync(dir2 + '/recursive');
+			rmdirSync(dir2);
 		});
 
 	});

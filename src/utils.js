@@ -22,7 +22,7 @@ function convertSizeStringToByteNumber(inputString) {
 
 function prepareStoreDirectory(dir) {
 	if (!existsSync(dir)) {
-		mkdirSync(dir);
+		mkdirSync(dir, { recursive: true });
 		return dir;
 	} else return null;
 }
